@@ -18,7 +18,7 @@ const TECHRIA = {
   // above. Leave empty to keep the site fully working (it will just
   // skip the Sheet/Drive step and go straight to WhatsApp).
   // See GOOGLE_APPS_SCRIPT_SETUP.md for the one-time setup.
-  SHEET_WEBAPP_URL: "https://script.google.com/macros/s/AKfycbwnCj18z_wkC9uX9-hF1VzYsFzAHjFdIrPLEQckEK-xBGoBYSaB1opw_Fx7j-VVKele/exec",
+  SHEET_WEBAPP_URL: "https://script.google.com/macros/s/AKfycbyIT7kOzIlle-q_hvI0W5Z53yWfWyOxH51nLNPvgE_yLu_UtAAOYOblEKXzQ8PlZea4/exec",
 
   // Optional: the normal shareable Sheet link, only used if you want
   // to link to it from somewhere later.

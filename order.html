@@ -43,12 +43,26 @@
 
     <form class="form-card reveal in-view" id="orderForm" novalidate>
       <div class="form-card-head">
-        <span class="fc-mark-frame"><img src="assets/techria-logo.jpg" alt="" class="fc-mark-img"></span>
+        <span class="fc-mark-frame"><img src="techria-logo.jpg" alt="" class="fc-mark-img"></span>
         <span class="fc-title">استمارة طلب — Techria</span>
       </div>
 
       <div class="form-body">
-        <input type="hidden" id="f_product" name="product">
+        <div class="f-section">
+          <div class="f-section-title">الخدمة <span class="ar-small">Service</span></div>
+          <div class="f-grid">
+            <div class="f-field full">
+              <label class="f-label">الخدمة المطلوبة <span class="ar">Which service</span></label>
+              <select id="f_service" name="service" required>
+                <option value="" disabled selected>اختر الخدمة المطلوبة</option>
+              </select>
+            </div>
+            <div class="f-field full" id="serviceOtherWrap" style="display:none;">
+              <label class="f-label">اكتب اسم الخدمة <span class="ar">Tell us what you need</span></label>
+              <input type="text" id="f_service_other" name="serviceOther" placeholder="اكتب اسم الخدمة اللي محتاجها لو مش موجودة في القائمة">
+            </div>
+          </div>
+        </div>
 
         <div class="f-section">
           <div class="f-section-title">بياناتك <span class="ar-small">Your details</span></div>

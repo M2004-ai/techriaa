@@ -1261,6 +1261,39 @@ button,
     padding:18px 14px;
   }
 }
+/* Fix: decorative line moving/appearing while scrolling */
+.chain-line,
+.chain-line::before,
+.chain-line::after,
+.scan-line {
+  pointer-events: none !important;
+}
+
+/* Keep decorative elements inside their section */
+.hero,
+.stat-chain,
+.card {
+  overflow: hidden;
+}
+
+/* Disable scan animation on touch devices */
+@media (hover: none), (pointer: coarse) {
+  .card:hover .scan-line {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}
+
+/* Prevent animated decorative elements from causing visual artifacts */
+@media (max-width: 760px) {
+  .chain-line {
+    display: none !important;
+  }
+
+  .hero-orbit .ring {
+    animation: none !important;
+  }
+}
 
 /*
 IMPORTANT HTML CHECK:

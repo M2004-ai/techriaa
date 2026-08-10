@@ -56,11 +56,17 @@ body{
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
   position:relative;
+  -webkit-overflow-scrolling:touch;
 }
 
 body::before{
   content:"";
-  position:fixed; inset:0;
+  /* absolute, not fixed: a fixed background with this many layered
+     gradients forces mobile browsers to repaint it on every scroll
+     frame, which shows up as visible stutter/shake while scrolling.
+     Absolute lets it scroll with the page instead — same look,
+     none of the jank. */
+  position:absolute; inset:0;
   background-image:
     radial-gradient(circle at 12% 4%, rgba(232,189,166,.22), transparent 44%),
     radial-gradient(circle at 90% 8%, rgba(243,228,189,.32), transparent 46%),
@@ -136,7 +142,19 @@ h1,h2,h3,h4{font-family:'Reem Kufi', sans-serif; font-weight:700; line-height:1.
   position:sticky; top:0; z-index:50;
   background:rgba(253,244,236,.82);
   backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
   border-bottom:1px solid var(--line);
+  transform:translateZ(0); /* own compositor layer: keeps the sticky header smooth during scroll */
+}
+@media (max-width:760px){
+  /* Heavy blur recalculated every scroll frame on a sticky element is
+     a common source of stutter on mid-range phones — a lighter blur
+     keeps the same frosted look with far less repaint cost. */
+  .site-header{
+    background:rgba(253,244,236,.92);
+    backdrop-filter: blur(6px) saturate(120%);
+    -webkit-backdrop-filter: blur(6px) saturate(120%);
+  }
 }
 .nav-row{
   display:flex; align-items:center; justify-content:space-between;
@@ -238,7 +256,6 @@ h1,h2,h3,h4{font-family:'Reem Kufi', sans-serif; font-weight:700; line-height:1.
 .ring-a{width:390px; height:390px; animation:spin 40s linear infinite;}
 .ring-b{width:330px; height:330px; animation:spin 55s linear infinite reverse;}
 @keyframes spin{ to{ transform:translate(-50%,-50%) rotate(360deg);} }
-
 /* ---------- stat "pendant chain" — echoes the necklace/bracelet products ---------- */
 .stat-chain{
   position:relative;
@@ -577,7 +594,7 @@ h1,h2,h3,h4{font-family:'Reem Kufi', sans-serif; font-weight:700; line-height:1.
 .f-label{display:block; font-size:12.5px; color:var(--ink-dim); margin-bottom:7px;}
 .f-label .ar{color:var(--ink-faint); font-size:11px; margin-right:4px;}
 
-input[type=text], input[type=tel], input[type=email], input[type=date], textarea, select{
+input[type=text], input[type=tel], input[type=email], input[type=date], input[type=password], textarea, select{
   width:100%; padding:13px 15px; border-radius:11px;
   background:rgba(139,90,59,.03); border:1px solid var(--line-strong);
   color:var(--ink); font-size:16px; font-family:inherit; transition:.2s;
@@ -585,7 +602,7 @@ input[type=text], input[type=tel], input[type=email], input[type=date], textarea
 /* 16px is intentional: anything smaller makes iOS Safari auto-zoom
    the page when a field is focused, which feels broken on mobile. */
 @media (min-width:641px){
-  input[type=text], input[type=tel], input[type=email], input[type=date], textarea, select{ font-size:14.5px; }
+  input[type=text], input[type=tel], input[type=email], input[type=date], input[type=password], textarea, select{ font-size:14.5px; }
 }
 
 select{
@@ -676,8 +693,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .hero-grid{grid-template-columns:1fr; gap:40px; text-align:center;}
   .hero-sub{margin-left:auto; margin-right:auto;}
   .hero-cta-row{justify-content:center;}
-  .hero-visual{order:-1; height:auto; padding:24px 0 6px;}
+  .hero-visual{order:-1; height:auto; min-height:300px; padding:24px 0 6px; overflow:hidden;}
   .hero-mark-frame{width:220px; height:220px;}
+  .ring-a{width:300px; height:300px;}
+  .ring-b{width:250px; height:250px;}
   .stat-chain{justify-content:center;}
 }
 
@@ -698,6 +717,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .hero-sub{font-size:15.5px;}
   .hero-mark-frame{width:180px; height:180px; border-radius:24px;}
   .hero-mark-img{border-radius:16px;}
+  .hero-visual{min-height:230px;}
+  .ring-a{width:220px; height:220px;}
+  .ring-b{width:180px; height:180px;}
   .btn{padding:12px 20px; font-size:13.5px;}
   .hero-cta-row{flex-direction:column; align-items:stretch;}
   .hero-cta-row .btn{justify-content:center;}
@@ -710,4 +732,56 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .success-box{padding:34px 24px;}
   .wa-float{width:52px; height:52px; bottom:16px; left:16px;}
   .wa-float svg{width:24px; height:24px;}
+}
+
+/* ================= Admin dashboard ================= */
+.admin-shell{padding:52px 0 80px;}
+.admin-gate{max-width:420px; margin:0 auto;}
+.admin-gate-note{font-size:12.5px; color:var(--ink-faint); text-align:center; margin-top:14px; line-height:1.6;}
+
+.admin-panel{max-width:1180px; margin:0 auto;}
+.admin-toolbar{
+  display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between;
+  margin-bottom:20px;
+}
+.admin-search{flex:1 1 240px; min-width:0;}
+.admin-toolbar-right{display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+.admin-count{font-size:12.5px; color:var(--ink-dim); font-family:'JetBrains Mono',monospace; white-space:nowrap;}
+.admin-logout{
+  font-size:12.5px; color:var(--ink-faint); background:none; border:none;
+  text-decoration:underline; cursor:pointer;
+}
+.admin-logout:hover{color:var(--rose-4);}
+
+.admin-table-wrap{
+  overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius);
+  background:var(--panel); -webkit-overflow-scrolling:touch;
+}
+.admin-table{width:100%; border-collapse:collapse; font-size:13px; min-width:960px;}
+.admin-table th, .admin-table td{padding:12px 14px; text-align:right; border-bottom:1px solid var(--line); vertical-align:top;}
+.admin-table th{
+  background:var(--panel-2); font-family:'JetBrains Mono',monospace; font-size:11px;
+  letter-spacing:.04em; color:var(--ink-dim); text-transform:uppercase; white-space:nowrap;
+}
+.admin-table td{color:var(--ink); white-space:nowrap;}
+.admin-table td.wrap-cell{white-space:normal; max-width:220px; line-height:1.55;}
+.admin-table tr:last-child td{border-bottom:none;}
+.admin-table tr:hover td{background:rgba(139,90,59,.03);}
+
+.admin-empty, .admin-loading{padding:48px 20px; text-align:center; color:var(--ink-faint); font-size:14px;}
+
+.admin-file-link{display:block; color:var(--rose-4); text-decoration:underline; font-size:12px;}
+.admin-file-link + .admin-file-link{margin-top:3px;}
+
+.admin-wa-btn{
+  display:inline-flex; align-items:center; gap:5px;
+  padding:6px 12px; border-radius:100px; font-size:11.5px; font-weight:700;
+  background:var(--grad-btn); color:#3c2415; white-space:nowrap;
+}
+.admin-wa-btn svg{width:12px; height:12px;}
+
+@media (max-width:640px){
+  .admin-shell{padding:34px 0 56px;}
+  .admin-toolbar{flex-direction:column; align-items:stretch;}
+  .admin-toolbar-right{justify-content:space-between;}
 }

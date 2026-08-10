@@ -18,11 +18,11 @@ const TECHRIA = {
   // above. Leave empty to keep the site fully working (it will just
   // skip the Sheet/Drive step and go straight to WhatsApp).
   // See GOOGLE_APPS_SCRIPT_SETUP.md for the one-time setup.
-  SHEET_WEBAPP_URL: "https://script.google.com/macros/s/AKfycbyIT7kOzIlle-q_hvI0W5Z53yWfWyOxH51nLNPvgE_yLu_UtAAOYOblEKXzQ8PlZea4/exec",
+  SHEET_WEBAPP_URL: "https://script.google.com/macros/s/AKfycbw2S7NUvw0cb1CSqPQWkUL3FeWiIY0hiIj4xOVmXrH3R36LGT5kAeTp_CHlGoMw8Eqn/exec",
 
   // Optional: the normal shareable Sheet link, only used if you want
   // to link to it from somewhere later.
-  SHEET_VIEW_URL: "https://docs.google.com/spreadsheets/d/1Y3I-a-Z4Ucc7QM3tKDNnYJJoO3pxQ2sMiv5l-w-KQbw/edit?gid=0#gid=0",
+  SHEET_VIEW_URL: "https://docs.google.com/spreadsheets/d/1_doy-Fv0Chpex9dsAbZrN0zDYNB_ADKjLVHtjd0HrcI/edit?gid=0#gid=0",
 
   LINKTREE_URL: "https://linktr.ee/techriamarkting?utm_source=linktree_profile_share&ltsid=24f9728b-fcb3-4bae-a718-fefdc5746e92",
 

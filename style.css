@@ -172,7 +172,7 @@ h1,h2,h3,h4{font-family:'Reem Kufi', sans-serif; font-weight:700; line-height:1.
 }
 .nav-cta:hover{transform:translateY(-2px) scale(1.04); box-shadow:0 14px 28px -10px rgba(207,138,111,.7);}
 
-.hamburger{display:none; flex-direction:column; gap:5px; background:none; border:none;}
+.hamburger{display:none; flex-direction:column; justify-content:center; align-items:center; gap:5px; background:none; border:none; width:44px; height:44px; flex-shrink:0;}
 .hamburger span{width:22px; height:2px; background:var(--ink); border-radius:2px; transition:.2s;}
 
 @media (max-width:880px){
@@ -577,13 +577,30 @@ h1,h2,h3,h4{font-family:'Reem Kufi', sans-serif; font-weight:700; line-height:1.
 .f-label{display:block; font-size:12.5px; color:var(--ink-dim); margin-bottom:7px;}
 .f-label .ar{color:var(--ink-faint); font-size:11px; margin-right:4px;}
 
-input[type=text], input[type=tel], input[type=email], input[type=date], textarea{
+input[type=text], input[type=tel], input[type=email], input[type=date], textarea, select{
   width:100%; padding:13px 15px; border-radius:11px;
   background:rgba(139,90,59,.03); border:1px solid var(--line-strong);
-  color:var(--ink); font-size:14.5px; font-family:inherit; transition:.2s;
+  color:var(--ink); font-size:16px; font-family:inherit; transition:.2s;
 }
+/* 16px is intentional: anything smaller makes iOS Safari auto-zoom
+   the page when a field is focused, which feels broken on mobile. */
+@media (min-width:641px){
+  input[type=text], input[type=tel], input[type=email], input[type=date], textarea, select{ font-size:14.5px; }
+}
+
+select{
+  appearance:none; -webkit-appearance:none; -moz-appearance:none;
+  cursor:pointer; padding-left:38px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a7461' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:left 14px center;
+  background-size:16px;
+}
+select:invalid{color:var(--ink-faint);}
+optgroup{font-weight:700; color:var(--ink); font-family:inherit;}
+option{color:var(--ink); font-weight:400;}
 input::placeholder, textarea::placeholder{color:var(--ink-faint);}
-input:focus, textarea:focus{outline:none; border-color:var(--rose-3); background:rgba(244,201,189,.04);}
+input:focus, textarea:focus, select:focus{outline:none; border-color:var(--rose-3); background:rgba(244,201,189,.04);}
 textarea{resize:vertical; min-height:90px;}
 
 .upload-zone{
@@ -642,7 +659,7 @@ textarea{resize:vertical; min-height:90px;}
 
 ::selection{background:var(--rose-3); color:#3c2415;}
 
-a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
   outline:2px solid var(--rose-2); outline-offset:2px;
 }
 
@@ -673,9 +690,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 @media (max-width:480px){
-  .nav-row{padding:12px 18px;}
-  .brand-text .en{font-size:17px;}
-  .brand-text .ar{font-size:10px;}
+  .nav-row{padding:12px 14px; gap:10px;}
+  .brand-text .en{font-size:16px;}
+  .brand-text .ar{display:none;}
+  .nav-cta{padding:9px 14px; font-size:12.5px;}
   .hero-title{font-size:clamp(28px,8vw,38px);}
   .hero-sub{font-size:15.5px;}
   .hero-mark-frame{width:180px; height:180px; border-radius:24px;}

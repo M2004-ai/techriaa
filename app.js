@@ -102,7 +102,6 @@ const FEATURED = [
   { id: "groom-pin", name: "دبوس العريس ومروحة العروسة", en: "WEARABLE VOICE QR", desc: "رسالة صوتية أو مكتوبة بينكم، بتتفتح بكود QR في لحظة الفرح.", icon: "pin" },
   { id: "qr-candle", name: "شمعة الذكرى", en: "MEMORY CANDLE QR", desc: "شمعة عادية في الشكل، جواها كود يوصلك لأغنية أو رسالة صوتية.", icon: "flame" },
   { id: "qr-sweets", name: "تغليف حلويات المناسبات", en: "EVENT SWEETS QR", desc: "علبة حلوى بكود QR يوصل لصورة أو رسالة شكر من المناسبة.", icon: "gift" },
-  { id: "memorial-prayer", name: "أوراق أدعية لمتوفى", en: "MEMORIAL PRAYER QR", desc: "ورقة أدعية بكود QR يوصل لصور وكلمات تذكارية عن الفقيد.", icon: "hands" },
   { id: "book-summary", name: "موقع تلخيص القصص والكتب", en: "STORY SUMMARY SITE", desc: "موقع بسيط يلخصلك أهم أحداث وشخصيات كتابك أو قصتك المفضلة.", icon: "book" },
 ];
 
@@ -119,10 +118,6 @@ const PRODUCTS = [
   { id: "keepsake-medal", cat: "occasions", name: "ميداليات تذكارية", en: "KEEPSAKE MEDAL", desc: "ميدالية بباركود تحمل ذكرى أو مناسبة، هدية دايمة بمحتوى رقمي.", icon: "medal" },
   { id: "bookmark-qr", cat: "occasions", name: "فواصل كتب بباركود", en: "BOOKMARK QR", desc: "فاصل كتاب أنيق مطبوع عليه باركود يوصل لقصة أو إهداء خاص.", icon: "bookmark" },
   { id: "story-page", cat: "occasions", name: "صفحات القصص الخاصة", en: "STORY PAGE", desc: "توثيق قصة شخص أو حدث في صفحة مصممة، توصلها لمن تحب بباركود.", icon: "document" },
-
-  // ---- Legacy ----
-  { id: "life-story", cat: "legacy", name: "قصة حياة موثقة", en: "LIFE STORY", desc: "توثيق سيرة أو محطات مهمة من حياة شخص عزيز في صفحة واحدة.", icon: "document" },
-  { id: "onsite-qr", cat: "legacy", name: "باركود على شاهد أو نصب تذكاري", en: "ON-SITE QR", desc: "باركود يوضع في مكان تذكاري ويوصل لصفحة الذكرى مباشرة.", icon: "monument" },
 
   // ---- Kids ----
   { id: "collectible-game", cat: "kids", name: "ألعاب التجميع التفاعلية", en: "COLLECTIBLE GAME QR", desc: "سلسلة باركودات يجمعها الطفل ليكمل تحدي أو لعبة صغيرة آمنة.", icon: "puzzle" },

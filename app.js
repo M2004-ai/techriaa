@@ -82,7 +82,6 @@ const ICONS = {
 /* ================= Categories ================= */
 const CATEGORIES = [
   { id: "occasions", ar: "المناسبات والذكريات", en: "OCCASIONS" },
-  { id: "legacy", ar: "الصدقة الجارية", en: "LEGACY" },
   { id: "kids", ar: "عالم الأطفال", en: "KIDS" },
   { id: "marketing", ar: "التسويق والسوشيال ميديا", en: "MARKETING" },
   { id: "office", ar: "الأعمال المكتبية والتقنية", en: "OFFICE & TECH" },
